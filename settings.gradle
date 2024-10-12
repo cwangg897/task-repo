@@ -1,1 +1,4 @@
 rootProject.name = 'task'
+include 'common'
+include 'profile-search'
+
