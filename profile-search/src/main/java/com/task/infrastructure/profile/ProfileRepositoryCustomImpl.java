@@ -14,6 +14,7 @@ import com.task.controller.response.ProfileResponse;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
@@ -28,13 +29,13 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
     }
 
     @Override
-    public ProfileResponse searchById(Long id) {
+    public Optional<ProfileResponse> searchById(Long id) {
         JPQLQuery<Long> viewCount = JPAExpressions
             .select(profileViewStatEntity.id.count().coalesce(0L))
             .from(profileViewStatEntity)
             .where(profileViewStatEntity.profileEntity.id.eq(id));
 
-        return queryFactory
+        ProfileResponse response =  queryFactory
             .select(Projections.constructor(ProfileResponse.class,
                 profileEntity.id,
                 profileEntity.name,
@@ -44,6 +45,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
             .from(profileEntity)
             .where(profileEntity.id.eq(id))
             .fetchOne();
+        return Optional.ofNullable(response);
     }
 
     @Override
