@@ -11,6 +11,7 @@ import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.task.PageResult;
 import com.task.controller.response.ProfileResponse;
+import com.task.util.DateUtils;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;

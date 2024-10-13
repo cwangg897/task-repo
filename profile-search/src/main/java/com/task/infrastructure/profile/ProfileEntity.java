@@ -58,9 +58,5 @@ public class ProfileEntity {
             ", updatedAt=" + updatedAt +
             '}';
     }
-
-    public ProfileEntity(String name){
-        this.name = name;
-    }
 }
 

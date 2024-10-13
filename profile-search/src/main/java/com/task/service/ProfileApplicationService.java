@@ -25,8 +25,8 @@ public class ProfileApplicationService {
     public ProfileResponse getById(Long id) {
         ProfileResponse response = profileQueryService.getById(id);
         ProfileViewStatEntity viewStatEntity = new ProfileViewStatEntity(new ProfileEntity(
-            response.id(),
-            response.name()));
+            response.getId(),
+            response.getName()));
         profileViewStatCommandService.save(viewStatEntity); // 이벤트로 빼기
         return response;
     }
