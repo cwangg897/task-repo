@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+profile-search/src/main/resources/application-dev.yml
+
+
+$buildDir/generated/querydsl
