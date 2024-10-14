@@ -28,7 +28,7 @@ public class ProfileController {
     // 상세 조회
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ProfileResponse>> getById(@PathVariable("id") Long id){
-        ProfileResponse response = profileApplicationService.getById(id);
+        ProfileResponse response = profileApplicationService.getProfileAndSendEvent(id);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.ok(response));
     }
 
