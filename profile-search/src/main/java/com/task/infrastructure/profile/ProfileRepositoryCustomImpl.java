@@ -9,6 +9,8 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.task.ApiException;
+import com.task.ErrorType;
 import com.task.PageResult;
 import com.task.controller.response.ProfileResponse;
 import com.task.util.DateUtils;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -46,6 +49,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
             .from(profileEntity)
             .where(profileEntity.id.eq(id))
             .fetchOne();
+
         return Optional.ofNullable(response);
     }
 
