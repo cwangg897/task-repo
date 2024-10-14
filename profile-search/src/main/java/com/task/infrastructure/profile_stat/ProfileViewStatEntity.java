@@ -33,12 +33,12 @@ public class ProfileViewStatEntity {
     @JoinColumn(name = "profile_id")
     private ProfileEntity profileEntity;
 
-    @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public ProfileViewStatEntity(ProfileEntity profileEntity) {
+    public ProfileViewStatEntity(ProfileEntity profileEntity,  LocalDateTime timeStamp) {
         this.profileEntity = profileEntity;
+        this.createdAt = timeStamp;
     }
 
     @Override
