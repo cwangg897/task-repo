@@ -8,6 +8,6 @@ CREATE TABLE profiles (
 CREATE TABLE profile_view_stat(
                                   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                                   profile_id BIGINT NOT NULL,
-                                  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                  created_at timestamp NOT NULL,
                                   FOREIGN KEY (profile_id) REFERENCES profiles(id)
 );
