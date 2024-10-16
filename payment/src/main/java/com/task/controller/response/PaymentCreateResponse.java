@@ -1,6 +1,6 @@
 package com.task.controller.response;
 
-import com.task.infrastructure.payment.PaymentEntity;
+import com.task.infrastructure.PaymentEntity;
 import com.task.util.DateUtils;
 import lombok.Builder;
 

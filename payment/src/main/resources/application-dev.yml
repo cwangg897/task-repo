@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+# MySQL 설정
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/task?allowMultiQueries=true
+    username: root
+    password: 1234
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    generate-ddl: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+# Hibernate SQL 디버깅 설정
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+
+
+user:
+  url: http://localhost:8080

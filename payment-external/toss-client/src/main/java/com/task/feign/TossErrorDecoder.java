@@ -2,6 +2,7 @@ package com.task.feign;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.ApiException;
+import com.task.ErrorType;
 import com.task.TossPaymentAcceptFailResponse;
 import feign.Response;
 import feign.codec.ErrorDecoder;
@@ -24,10 +25,10 @@ public class TossErrorDecoder implements ErrorDecoder {
         try {
             String body = new String(response.body().asInputStream().readAllBytes(), StandardCharsets.UTF_8);
             TossPaymentAcceptFailResponse errorResponse = objectMapper.readValue(body, TossPaymentAcceptFailResponse.class);
-            throw new ApiException(errorResponse.getMessage(), errorResponse.getCode(), HttpStatus.valueOf(response.status()));
+            throw new TossException( errorResponse.getCode(), errorResponse.getMessage(), response.status());
         } catch (IOException e) {
-            log.error("[Naver] 에러 메세지 파싱 에러 code={}, request={}, methodKey={}, errorMessage={}", response.status(), response.request(), methodKey, e.getMessage());
-            throw new ApiException("네이버 메세지 파싱에러", ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
+            log.error("[Toss] PG승인 에러 code={}, request={}, methodKey={}, errorMessage={}", response.status(), response.request(), methodKey, e.getMessage());
+            throw new ApiException("토스 PG승인 에러", ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
         }
     }
 }
