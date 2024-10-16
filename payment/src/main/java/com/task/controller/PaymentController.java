@@ -57,8 +57,7 @@ public class PaymentController {
 
     /**
      * 결제요청 실패
-     * /fail?code={ERROR_CODE}&message={ERROR_MESSAGE}
-     * &orderId={ORDER_ID}
+     * /fail?code={ERROR_CODE}&message={ERROR_MESSAGE} &orderId={ORDER_ID} -> 프론트에게 봄
      * 실패하면 이렇게 오는데
      * 구매자에 의해 결제가 취소되면 PAY_PROCESS_CANCELED 에러가 발생합니다. 결제 과정이 중단된 것이라서 failUrl로 orderId가 전달되지 않아요.
      * 결제가 실패하면 PAY_PROCESS_ABORTED 에러가 발생합니다.

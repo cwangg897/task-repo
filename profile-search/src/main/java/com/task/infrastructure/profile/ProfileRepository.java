@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Long>, ProfileRepositoryCustom {
-
-    Optional<ProfileEntity> getByProfileId(String profileId);
 }
