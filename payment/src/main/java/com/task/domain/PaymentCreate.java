@@ -1,6 +1,6 @@
 package com.task.domain;
 
-import com.task.infrastructure.payment.PaymentEntity;
+import com.task.infrastructure.PaymentEntity;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;

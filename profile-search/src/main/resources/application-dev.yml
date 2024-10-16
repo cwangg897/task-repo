@@ -1,0 +1,47 @@
+# MySQL 설정
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/task?allowMultiQueries=true
+    username: root
+    password: 1234
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    generate-ddl: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+
+cache:
+  minutes:
+    profile: 1
+    profiles: 2
+    default: 1
+
+# Hibernate SQL 디버깅 설정
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 100
+        minimum-number-of-calls: 10
+        wait-duration-in-open-state:
+          seconds: 20
+        failure-rate-threshold: 60
+        permitted-number-of-calls-in-half-open-state: 10

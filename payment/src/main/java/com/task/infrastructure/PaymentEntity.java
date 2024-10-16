@@ -1,4 +1,4 @@
-package com.task.infrastructure.payment;
+package com.task.infrastructure;
 
 import com.task.domain.PaymentCreate;
 import com.task.domain.PaymentStatus;
@@ -68,6 +68,11 @@ public class PaymentEntity{
         this.status = status;
         this.approvedAt = approvedAt;
         this.transactionId = transactionId;
+    }
+
+    public void approveFail(String failReason){
+        this.status = "ABORTED"; // 결제 승인이 실패한 상태
+        this.failReason = failReason;
     }
 
     public PaymentEntity(Long amount, String orderId, String payType, String payGateway, String profileId) {

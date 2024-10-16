@@ -2,7 +2,7 @@ package com.task.controller;
 
 import com.task.ApiException;
 import com.task.ErrorType;
-import com.task.controller.response.ErrorResponse;
+import com.task.ErrorResponse;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

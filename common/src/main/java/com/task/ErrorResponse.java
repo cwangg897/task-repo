@@ -1,6 +1,6 @@
-package com.task.controller.response;
+package com.task;
 
-import com.task.ErrorType;
+
 
 public record ErrorResponse(String errorMessage, ErrorType errorType) {
 
