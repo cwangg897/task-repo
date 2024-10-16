@@ -1,4 +1,8 @@
 rootProject.name = 'task'
 include 'common'
 include 'profile-search'
+include 'payment'
+include 'payment-external'
+include 'payment-external:toss-client'
+findProject(':payment-external:toss-client')?.name = 'toss-client'
 
