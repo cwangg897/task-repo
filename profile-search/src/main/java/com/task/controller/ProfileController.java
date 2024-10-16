@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${api.version}/profiles")
-
 public class ProfileController {
 
     private final ProfileApplicationService profileApplicationService;

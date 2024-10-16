@@ -43,6 +43,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
             .select(Projections.constructor(ProfileResponse.class,
                 profileEntity.id,
                 profileEntity.name,
+                profileEntity.user.id,
                 profileEntity.createdAt,
                 viewCount
             ))
@@ -66,6 +67,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
             .select(Projections.constructor(ProfileResponse.class,
                 profileEntity.id,
                 profileEntity.name,
+                profileEntity.user.id,
                 profileEntity.createdAt,
                 viewCountSubQuery
             ))

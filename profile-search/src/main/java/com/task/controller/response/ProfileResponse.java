@@ -12,11 +12,13 @@ import lombok.NoArgsConstructor;
 public class ProfileResponse {
     private Long id;
     private String name;
+    private Long userId;
     private String createdAt;
     private Long viewCount;
-    public ProfileResponse(Long id, String name, LocalDateTime createdAt, Long viewCount){
+    public ProfileResponse(Long id, String name, Long userId, LocalDateTime createdAt, Long viewCount){
         this.id = id;
         this.name = name;
+        this.userId = userId;
         this.createdAt = DateUtils.formatToKoreaTime(createdAt);
         this.viewCount = viewCount;
     }
