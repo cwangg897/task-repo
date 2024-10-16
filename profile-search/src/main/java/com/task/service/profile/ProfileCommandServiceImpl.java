@@ -19,7 +19,7 @@ public class ProfileCommandServiceImpl implements ProfileCommandService{
 
     @Override
     public void addPoint(PointUpdate request) {
-        ProfileEntity profile = profileRepository.findById(Long.valueOf(request.getUserId()))
+        ProfileEntity profile = profileRepository.findByIdWithPessimisticLock(Long.valueOf(request.getUserId()))
             .orElseThrow(() ->
                 new ApiException("profiles-search에서 ID " + request.getUserId() + " 찾을 수 없습니다",
                     ErrorType.NO_RESOURCE
