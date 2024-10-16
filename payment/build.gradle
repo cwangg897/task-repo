@@ -1,0 +1,10 @@
+bootJar.enabled = true
+
+dependencies {
+    implementation project(':common')
+    implementation project(':payment-external:toss-client')
+    implementation project(':profile-search')
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
+}

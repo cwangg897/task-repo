@@ -33,6 +33,9 @@ public class ProfileEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "point")
+    private Long point;
+
     @OneToMany(mappedBy = "profileEntity")
     private List<ProfileViewStatEntity> profileViewStats = new ArrayList<>();
 
@@ -47,6 +50,10 @@ public class ProfileEntity {
     public ProfileEntity(Long id, String name){
         this.id = id;
         this.name = name;
+    }
+
+    public long addPoint(Long point){
+        return this.point + point;
     }
 
     @Override

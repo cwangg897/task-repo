@@ -1,0 +1,4 @@
+toss:
+  pg:
+    url: https://api.tosspayments.com/v1/payments
+    secret-key: test_sk_BX7zk2yd8yNDmjKkD4nA3x9POLqK
