@@ -8,4 +8,4 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 
-public record ProfileQueryEvent(Long profileId, String name, LocalDateTime timeStamp) { }
+public record ProfileQueryEvent(Long profileId, String name, Long userId, LocalDateTime timeStamp) { }

@@ -1,12 +1,17 @@
 package com.task.infrastructure.profile;
 
+import com.task.infrastructure.BaseTimeEntity;
 import com.task.infrastructure.profile_stat.ProfileViewStatEntity;
+import com.task.infrastructure.user.UserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,7 +29,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProfileEntity {
+public class ProfileEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,27 +38,17 @@ public class ProfileEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "point")
-    private Long point;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @OneToMany(mappedBy = "profileEntity")
     private List<ProfileViewStatEntity> profileViewStats = new ArrayList<>();
 
-    @CreatedDate
-    @Column(updatable = false, name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
-
-    public ProfileEntity(Long id, String name){
+    public ProfileEntity(Long id, String name, UserEntity user){
         this.id = id;
         this.name = name;
-    }
-
-    public long addPoint(Long point){
-        return this.point + point;
+        this.user = user;
     }
 
     @Override
@@ -61,9 +56,9 @@ public class ProfileEntity {
         return "ProfileEntity{" +
             "id=" + id +
             ", name='" + name + '\'' +
-            ", createdAt=" + createdAt +
-            ", updatedAt=" + updatedAt +
             '}';
     }
+
+
 }
 

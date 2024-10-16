@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${api.version}/profiles")
-
 public class ProfileController {
 
     private final ProfileApplicationService profileApplicationService;
@@ -43,11 +42,5 @@ public class ProfileController {
     ){
         PageResult<ProfileResponse> response = profileApplicationService.getAllByCondition(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.ok(response));
-    }
-
-    @PatchMapping("/points")
-    public ResponseEntity<ApiResponse<String>> addPoint(@RequestBody PointUpdate request){
-        profileApplicationService.addPoint(request);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.ok("포인트 추가 성공"));
     }
 }

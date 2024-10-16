@@ -42,7 +42,7 @@ public class ProfileQueryServiceImpl implements ProfileQueryService {
         log.warn("[ProfileQueryServiceImpl - getById] Circuit Breaker is open! Fallback to DB search.");
         return profileRepository.searchById(id)
             .orElseThrow(()->
-                new ApiException("profiles-search에서 ID "+ id + " 찾을 수 없습니다", ErrorType.NO_RESOURCE
+                new ApiException("profiles-search에서 ID:"+ id + " 찾을 수 없습니다", ErrorType.NO_RESOURCE
                     , HttpStatus.NOT_FOUND));
     }
 

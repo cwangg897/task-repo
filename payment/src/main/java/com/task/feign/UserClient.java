@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "userClient", url = "${user.url}")
 public interface UserClient {
 
-    @PatchMapping("/api/v1/profiles/points")
+    @PatchMapping("/api/v1/users/points")
     void addPoint(@RequestBody PointAddRequest request);
 
 }

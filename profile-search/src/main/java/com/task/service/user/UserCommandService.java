@@ -1,7 +1,8 @@
-package com.task.service.profile;
+package com.task.service.user;
 
 import com.task.controller.request.PointUpdate;
 
-public interface ProfileCommandService {
+public interface UserCommandService {
+
     void addPoint(PointUpdate request);
 }
