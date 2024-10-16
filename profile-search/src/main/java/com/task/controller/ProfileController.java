@@ -43,4 +43,10 @@ public class ProfileController {
         PageResult<ProfileResponse> response = profileApplicationService.getAllByCondition(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.ok(response));
     }
+
+    @PatchMapping("/points")
+    public ResponseEntity<ApiResponse<String>> addPoint(@RequestBody PointUpdate request){
+        profileApplicationService.addPoint(request);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.ok("포인트 추가 성공"));
+    }
 }
