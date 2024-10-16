@@ -30,13 +30,13 @@ public class RedisCacheConfig {
     @Value("${spring.data.redis.database}")
     private int database;
 
-    @Value("${profile.cache.minute}")
+    @Value("${cache.minutes.profile}")
     private int profileCacheMinute;
 
-    @Value("${profiles.cache.minute}")
+    @Value("${cache.minutes.profiles}")
     private int profilesCacheMinute;
 
-    @Value("${default.cache.minute}")
+    @Value("${cache.minutes.default}")
     private int defaultCacheMinute;
 
     @Bean("redisCacheConnectionFactory")

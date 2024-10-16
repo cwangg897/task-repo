@@ -12,10 +12,3 @@ create table payments(
                          updated_at timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                          approved_at timestamp
 );
-
-create table users(
-                      id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                      point bigint not null default 0,
-                      created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                      updated_at timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
