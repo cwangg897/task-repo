@@ -2,12 +2,14 @@ package com.task.controller;
 
 import com.task.ApiResponse;
 import com.task.controller.response.PaymentApproveResponse;
+import com.task.controller.response.PaymentRequestFailResponse;
 import com.task.domain.PaymentCreate;
 import com.task.controller.response.PaymentCreateResponse;
 import com.task.service.PaymentApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 @RequiredArgsConstructor
-@RequestMapping("/payments")
+@RequestMapping("${api.version}/payments")
 public class PaymentController {
 
     private final PaymentApplicationService paymentApplicationService;
@@ -42,7 +44,7 @@ public class PaymentController {
      * 클라이언트에서 결제 금액을 조작하는 행위를 방지할 수 있습니다.
      * 만약 값이 다르다면 결제를 취소하고 구매자에게 알려주세요.
      */
-    @PostMapping("/{pgGateway}/success")
+    @PostMapping("/success/{pgGateway}")
     public ResponseEntity<ApiResponse<PaymentApproveResponse>> approvePayment(
         @PathVariable String pgGateway,
         @RequestParam String paymentKey,
@@ -57,16 +59,22 @@ public class PaymentController {
 
     /**
      * 결제요청 실패
-     * /fail?code={ERROR_CODE}&message={ERROR_MESSAGE}
-     * &orderId={ORDER_ID}
+     * /fail?code={ERROR_CODE}&message={ERROR_MESSAGE} &orderId={ORDER_ID} -> 프론트에게 봄
      * 실패하면 이렇게 오는데
      * 구매자에 의해 결제가 취소되면 PAY_PROCESS_CANCELED 에러가 발생합니다. 결제 과정이 중단된 것이라서 failUrl로 orderId가 전달되지 않아요.
      * 결제가 실패하면 PAY_PROCESS_ABORTED 에러가 발생합니다.
      * 구매자가 입력한 카드 정보에 문제가 있다면 REJECT_CARD_COMPANY 에러가 발생합니다.
      *
      */
-//    public void failRequestPayment(){
-//
-//    }
+    @GetMapping("/fail/{pgGateway}")
+    public ResponseEntity<ApiResponse<PaymentRequestFailResponse>> failPaymentRequest(
+        @PathVariable String pgGateway,
+        @RequestParam String code,
+        @RequestParam String message,
+        @RequestParam String orderId
+    ){
+        PaymentRequestFailResponse response = paymentApplicationService.failPaymentRequest(pgGateway, code, message, orderId);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.of(HttpStatus.BAD_REQUEST, message, response));
+    }
 
 }

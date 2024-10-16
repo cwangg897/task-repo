@@ -6,15 +6,19 @@ import lombok.Builder;
 
 
 @Builder
-public record PaymentCreateResponse(String orderId, Long amount, String payGateway, String payType, String createdAt, String userId){
+public record PaymentCreateResponse(String orderId, Long amount, String payGateway, String payType, String createdAt, String userId,
+                                    String successUrl, String failUrl){
 
-    public static PaymentCreateResponse from(PaymentEntity payment) {
+    public static PaymentCreateResponse of(PaymentEntity payment, String successUrl,
+        String failUrl) {
         return PaymentCreateResponse.builder()
             .orderId(payment.getOrderId())
             .amount(payment.getAmount())
             .payGateway(payment.getPayGateway())
             .payType(payment.getPayType())
             .userId(payment.getProfileId())
+            .successUrl(successUrl)
+            .failUrl(failUrl)
             .createdAt(DateUtils.formatToKoreaTime(payment.getCreatedAt()))
             .build();
     }

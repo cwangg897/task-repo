@@ -1,13 +1,9 @@
 package com.task.infrastructure;
 
-import com.task.domain.PaymentCreate;
-import com.task.domain.PaymentStatus;
-import com.task.infrastructure.BaseTimeEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -81,5 +77,10 @@ public class PaymentEntity{
         this.payType = payType;
         this.payGateway = payGateway;
         this.profileId= profileId;
+    }
+
+    public void failPaymentRequest(String message) {
+        this.failReason = message;
+        this.status = "ABORTED";
     }
 }

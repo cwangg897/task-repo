@@ -1,6 +1,7 @@
 package com.task.service;
 
 import com.task.controller.response.PaymentApproveResponse;
+import com.task.controller.response.PaymentRequestFailResponse;
 import com.task.domain.PaymentCreate;
 import com.task.controller.response.PaymentCreateResponse;
 import java.util.Map;
@@ -21,9 +22,17 @@ public class PaymentApplicationService {
     }
 
     // 요청 성공(인증성공) - 승인 요청
-    public PaymentApproveResponse approvePayment(String pgGateway, String paymentKey, String orderId, String amount) {
+    public PaymentApproveResponse approvePayment(String pgGateway, String paymentKey,
+        String orderId, String amount) {
         PaymentStrategy paymentStrategy = paymentStrategies.get(pgGateway);
         return paymentStrategy.approvePayment(paymentKey, orderId, amount);
+    }
+
+    // ABORTED
+    public PaymentRequestFailResponse failPaymentRequest(
+        String pagGateway, String code, String message, String orderId) {
+        PaymentStrategy paymentStrategy = paymentStrategies.get(pagGateway);
+        return paymentStrategy.failPaymentRequest(code, message, orderId);
     }
 
     // 요청 실패 - 예외 처리
