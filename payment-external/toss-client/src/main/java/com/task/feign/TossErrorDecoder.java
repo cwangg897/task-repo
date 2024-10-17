@@ -27,8 +27,8 @@ public class TossErrorDecoder implements ErrorDecoder {
             TossPaymentAcceptFailResponse errorResponse = objectMapper.readValue(body, TossPaymentAcceptFailResponse.class);
             throw new TossException( errorResponse.getCode(), errorResponse.getMessage(), response.status());
         } catch (IOException e) {
-            log.error("[Toss] PG승인 에러 code={}, request={}, methodKey={}, errorMessage={}", response.status(), response.request(), methodKey, e.getMessage());
-            throw new ApiException("토스 PG승인 에러", ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
+            log.error("[Toss] PG승인 메시지 파싱 에러 code={}, request={}, methodKey={}, errorMessage={}", response.status(), response.request(), methodKey, e.getMessage());
+            throw new ApiException("토스 PG승인 메시지 파싱 에러", ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
         }
     }
 }

@@ -15,12 +15,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.catalina.User;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity(name = "users")
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 public class UserEntity extends BaseTimeEntity {
 
     @Id
@@ -30,8 +32,13 @@ public class UserEntity extends BaseTimeEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "point")
+    @Column(name = "point", nullable = true)
     private Long point;
+
+    public UserEntity(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
 
     public UserEntity(String name){
         this.name = name;

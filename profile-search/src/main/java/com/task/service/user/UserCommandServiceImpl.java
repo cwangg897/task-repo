@@ -23,7 +23,7 @@ public class UserCommandServiceImpl implements UserCommandService{
     @Override
     public void addPoint(PointUpdate request) {
         try {
-            UserEntity user = userRepository.findByIdWithPessimisticLock(Long.valueOf(request.getUserId()))
+            UserEntity user = userRepository.findByIdWithPessimisticLock(request.getUserId())
                 .orElseThrow(() ->
                     new ApiException("user ID " + request.getUserId() + " 찾을 수 없습니다",
                         ErrorType.NO_RESOURCE

@@ -3,7 +3,6 @@ package com.task.service;
 import com.task.PageResult;
 import com.task.controller.request.PointUpdate;
 import com.task.controller.response.ProfileResponse;
-import com.task.service.profile.ProfileCommandService;
 import com.task.service.profile.ProfileQueryService;
 import com.task.service.profile.event.ProfileQueryEvent;
 import com.task.service.user.UserCommandService;
