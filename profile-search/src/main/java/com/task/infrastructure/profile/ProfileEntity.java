@@ -51,6 +51,11 @@ public class ProfileEntity extends BaseTimeEntity {
         this.user = user;
     }
 
+    public ProfileEntity(String name, UserEntity user){
+        this.name = name;
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "ProfileEntity{" +

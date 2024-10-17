@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class ProfileQueryServiceImpl implements ProfileQueryService {
     }
 
 
-    @CircuitBreaker(name = "getAllByCondition", fallbackMethod = "getAllByConditionFallBack")
+    @CircuitBreaker(name = "GetAllByCondition", fallbackMethod = "getAllByConditionFallBack")
     @Cacheable(cacheNames = "profiles", value = "profiles", key =
         "'page_' + #pageable.getOffset() + "
             + "'_size_' + #pageable.getPageSize() + '_sort_' + #pageable.sort.toString()")

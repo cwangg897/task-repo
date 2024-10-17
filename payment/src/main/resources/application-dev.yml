@@ -24,7 +24,7 @@ logging:
     org:
       hibernate:
         SQL: debug
-
+        orm.jdbc.bind: trace
 
 user:
   url: http://localhost:8080
