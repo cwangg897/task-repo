@@ -45,10 +45,10 @@ class TossPaymentServiceTest {
         String orderId = "testOrderId";
         Long userId = 1L;
         Long amount = 10000L;
-        String payGateway = "toss";
+        PaymentCompany payGateway = PaymentCompany.TOSS;
         String payType = "card";
         PaymentCreate request = new PaymentCreate(orderId, userId, amount, payGateway, payType);
-        PaymentEntity entity = new PaymentEntity(amount, orderId, payType, payGateway, userId,
+        PaymentEntity entity = new PaymentEntity(amount, orderId, payType, payGateway.getName(), userId,
             LocalDateTime.now());
         when(paymentRepository.save(any())).thenReturn(entity);
         // when
