@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PointUpdate {
 
-    private String userId;
+    private Long userId;
     private String amount;
 }

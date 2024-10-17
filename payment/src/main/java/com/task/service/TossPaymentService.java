@@ -6,9 +6,9 @@ import com.task.TossPaymentAcceptRequest;
 import com.task.TossPaymentAcceptResponse;
 import com.task.controller.response.PaymentApproveResponse;
 import com.task.controller.response.PaymentRequestFailResponse;
-import com.task.domain.PaymentCreate;
+import com.task.controller.request.PaymentCreate;
 import com.task.controller.response.PaymentCreateResponse;
-import com.task.domain.PointAddRequest;
+import com.task.controller.request.PointAddRequest;
 import com.task.feign.TossClient;
 import com.task.feign.TossException;
 import com.task.feign.UserClient;
@@ -58,7 +58,7 @@ public class TossPaymentService implements PaymentStrategy {
 
             // 포인트 적립 - (유저에 저장) feign client로 통신
             // todo 실패하면 로그 남기기 혹은 db에 저장하기 비동기 메소드로 빼기 - 향후 kafka로 변경
-            userClient.addPoint(new PointAddRequest(payment.getProfileId(), response.getAmount()));
+            userClient.addPoint(new PointAddRequest(payment.getUserId(), response.getAmount()));
             return PaymentApproveResponse.from(response);
         } catch (TossException e) {
             // 주문 실패로 상태 업데이트

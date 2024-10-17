@@ -28,8 +28,8 @@ public class PaymentEntity{
     @Column(name = "transaction_id") // toss: payment key
     private String transactionId;
 
-    @Column(name = "profile_id")
-    private String profileId;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "amount")
     private Long amount;
@@ -50,11 +50,11 @@ public class PaymentEntity{
     private String failReason;
 
     @CreatedDate
-    @Column(updatable = false, name = "created_at", nullable = false)
+    @Column(updatable = false, name = "created_at", nullable = true)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private LocalDateTime updatedAt;
 
     @Column(name = "approved_at", nullable = false)
@@ -71,12 +71,21 @@ public class PaymentEntity{
         this.failReason = failReason;
     }
 
-    public PaymentEntity(Long amount, String orderId, String payType, String payGateway, String profileId) {
+    public PaymentEntity(Long amount, String orderId, String payType, String payGateway, Long userId) {
         this.orderId = orderId;
         this.amount = amount;
         this.payType = payType;
         this.payGateway = payGateway;
-        this.profileId= profileId;
+        this.userId= userId;
+    }
+
+    public PaymentEntity(Long amount, String orderId, String payType, String payGateway, Long userId, LocalDateTime createdAt) {
+        this.orderId = orderId;
+        this.amount = amount;
+        this.payType = payType;
+        this.payGateway = payGateway;
+        this.userId= userId;
+        this.createdAt = createdAt;
     }
 
     public void failPaymentRequest(String message) {

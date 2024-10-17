@@ -6,7 +6,7 @@ import lombok.Builder;
 
 
 @Builder
-public record PaymentCreateResponse(String orderId, Long amount, String payGateway, String payType, String createdAt, String userId,
+public record PaymentCreateResponse(String orderId, Long amount, String payGateway, String payType, String createdAt, Long userId,
                                     String successUrl, String failUrl){
 
     public static PaymentCreateResponse of(PaymentEntity payment, String successUrl,
@@ -16,7 +16,7 @@ public record PaymentCreateResponse(String orderId, Long amount, String payGatew
             .amount(payment.getAmount())
             .payGateway(payment.getPayGateway())
             .payType(payment.getPayType())
-            .userId(payment.getProfileId())
+            .userId(payment.getUserId())
             .successUrl(successUrl)
             .failUrl(failUrl)
             .createdAt(DateUtils.formatToKoreaTime(payment.getCreatedAt()))

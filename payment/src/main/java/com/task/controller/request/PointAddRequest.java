@@ -1,4 +1,4 @@
-package com.task.domain;
+package com.task.controller.request;
 
 import java.io.Serializable;
 import lombok.AccessLevel;
@@ -12,6 +12,6 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class PointAddRequest{
-    private String userId;
+    private Long userId;
     private String amount;
 }

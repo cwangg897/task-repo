@@ -2,7 +2,7 @@ package com.task.service;
 
 import com.task.controller.response.PaymentApproveResponse;
 import com.task.controller.response.PaymentRequestFailResponse;
-import com.task.domain.PaymentCreate;
+import com.task.controller.request.PaymentCreate;
 import com.task.controller.response.PaymentCreateResponse;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;

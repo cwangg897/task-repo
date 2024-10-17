@@ -3,7 +3,7 @@ package com.task.controller;
 import com.task.ApiResponse;
 import com.task.controller.response.PaymentApproveResponse;
 import com.task.controller.response.PaymentRequestFailResponse;
-import com.task.domain.PaymentCreate;
+import com.task.controller.request.PaymentCreate;
 import com.task.controller.response.PaymentCreateResponse;
 import com.task.service.PaymentApplicationService;
 import lombok.RequiredArgsConstructor;
