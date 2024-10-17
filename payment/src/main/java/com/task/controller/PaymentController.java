@@ -6,6 +6,7 @@ import com.task.controller.response.PaymentRequestFailResponse;
 import com.task.controller.request.PaymentCreate;
 import com.task.controller.response.PaymentCreateResponse;
 import com.task.service.PaymentApplicationService;
+import com.task.service.PaymentCompany;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * https://docs.tosspayments.com/guides/payment-widget/integration?frontend=javascript&backend=java
  * https://docs.tosspayments.com/blog/what-is-successurl
  */
-@RestControllerAdvice
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("${api.version}/payments")
 public class PaymentController {
@@ -46,7 +48,7 @@ public class PaymentController {
      */
     @PostMapping("/success/{pgGateway}")
     public ResponseEntity<ApiResponse<PaymentApproveResponse>> approvePayment(
-        @PathVariable String pgGateway,
+        @PathVariable PaymentCompany pgGateway,
         @RequestParam String paymentKey,
         @RequestParam String orderId,
         @RequestParam String amount
@@ -68,7 +70,7 @@ public class PaymentController {
      */
     @GetMapping("/fail/{pgGateway}")
     public ResponseEntity<ApiResponse<PaymentRequestFailResponse>> failPaymentRequest(
-        @PathVariable String pgGateway,
+        @PathVariable PaymentCompany pgGateway,
         @RequestParam String code,
         @RequestParam String message,
         @RequestParam String orderId

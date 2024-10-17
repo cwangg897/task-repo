@@ -16,24 +16,22 @@ public class PaymentApplicationService {
 
     // 요청 시
     public PaymentCreateResponse requestPayment(PaymentCreate create) {
-        PaymentStrategy paymentStrategy = paymentStrategies.get(create.getPayGateway());
+        PaymentStrategy paymentStrategy = paymentStrategies.get(create.getPayGateway().getName());
         // 요청 저장
         return paymentStrategy.requestPayment(create);
     }
 
     // 요청 성공(인증성공) - 승인 요청
-    public PaymentApproveResponse approvePayment(String pgGateway, String paymentKey,
+    public PaymentApproveResponse approvePayment(PaymentCompany pgGateway, String paymentKey,
         String orderId, String amount) {
-        PaymentStrategy paymentStrategy = paymentStrategies.get(pgGateway);
+        PaymentStrategy paymentStrategy = paymentStrategies.get(pgGateway.getName());
         return paymentStrategy.approvePayment(paymentKey, orderId, amount);
     }
 
     // ABORTED
     public PaymentRequestFailResponse failPaymentRequest(
-        String pagGateway, String code, String message, String orderId) {
-        PaymentStrategy paymentStrategy = paymentStrategies.get(pagGateway);
+        PaymentCompany pagGateway, String code, String message, String orderId) {
+        PaymentStrategy paymentStrategy = paymentStrategies.get(pagGateway.getName());
         return paymentStrategy.failPaymentRequest(code, message, orderId);
     }
-
-    // 요청 실패 - 예외 처리
 }

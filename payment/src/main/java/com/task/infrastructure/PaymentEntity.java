@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,6 +20,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 public class PaymentEntity{
 
     @Id
@@ -37,7 +39,7 @@ public class PaymentEntity{
     @Column(name = "order_id")
     private String orderId;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = true)
     private String status;
 
     @Column(name = "pay_type")

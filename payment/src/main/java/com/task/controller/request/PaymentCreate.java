@@ -1,6 +1,7 @@
 package com.task.controller.request;
 
 import com.task.infrastructure.PaymentEntity;
+import com.task.service.PaymentCompany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -23,12 +24,12 @@ public class PaymentCreate {
     private Long amount;
 
     @NotEmpty(message = "payGateway는 필수값입니다")
-    private String payGateway;
+    private PaymentCompany payGateway;
 
     @NotEmpty(message = "payType은 필수값입니다")
     private String payType;
 
     public PaymentEntity toEntity(){
-        return new PaymentEntity(amount, orderId, payType, payGateway, userId);
+        return new PaymentEntity(amount, orderId, payType, payGateway.getName(), userId);
     }
 }

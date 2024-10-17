@@ -15,18 +15,23 @@ import com.task.feign.UserClient;
 import com.task.infrastructure.PaymentEntity;
 import com.task.infrastructure.PaymentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("toss")
+
+
+@Service
 @Transactional
 @RequiredArgsConstructor
 public class TossPaymentService implements PaymentStrategy {
 
     private final PaymentRepository paymentRepository;
+
     private final TossClient tossClient;
+
     private final UserClient userClient;
 
     @Value("${toss.success_url}")

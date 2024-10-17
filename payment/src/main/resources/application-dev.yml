@@ -1,6 +1,9 @@
 api:
   version: /api/v1
 
+
+
+
 # MySQL 설정
 spring:
   datasource:
@@ -8,6 +11,9 @@ spring:
     url: jdbc:mariadb://localhost:3306/task?allowMultiQueries=true
     username: root
     password: 1234
+  config:
+    import:
+      - application-toss-client.yml
 
   # JPA 설정
   jpa:
